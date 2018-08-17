@@ -303,6 +303,13 @@ void os_set_line_buffering(void)
     setvbuf(stdout, NULL, _IOLBF, 0);
 }
 
+#include <sys/file.h>
+
+// The lockf() is not available on Android
+static int lockf(int fd, int cmd, off_t ignored_len) {
+    return flock(fd, cmd);
+}
+
 int qemu_create_pidfile(const char *filename)
 {
     char buffer[128];

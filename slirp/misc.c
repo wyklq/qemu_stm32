@@ -169,7 +169,7 @@ fork_exec(struct socket *so, const char *ex, int do_pty)
 		dup2(s, 0);
 		dup2(s, 1);
 		dup2(s, 2);
-		for (s = getdtablesize() - 1; s >= 3; s--)
+		for (s = 1024 - 1; s >= 3; s--)  /* hardcode dtable size */
 		   close(s);
 
 		i = 0;

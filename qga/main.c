@@ -306,6 +306,13 @@ static FILE *ga_open_logfile(const char *logfile)
 }
 
 #ifndef _WIN32
+#include <sys/file.h>
+
+// The lockf() is not available on Android
+static int lockf(int fd, int cmd, off_t ignored_len) {
+    return flock(fd, cmd);
+}
+
 static bool ga_open_pidfile(const char *pidfile)
 {
     int pidfd;
