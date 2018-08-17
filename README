@@ -1,3 +1,5 @@
+[This fork contains a few line of change for Android/x86-64 under termux enviornment ]
+
 QEMU with STM32 Microcontroller Implementation
 
 Official Homepage: http://beckus.github.io/qemu_stm32/
